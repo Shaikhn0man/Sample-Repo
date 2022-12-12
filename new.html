@@ -1,0 +1,69 @@
+<html>
+ <head> 
+<title> Login Form</title> 
+<style> 
+.outer-box{ background:#305082; border-radius: 5px; padding : 5px; color:white;  }
+ .inner-box{ background:black; border-radius: 5px; padding : 5px; }
+ .paragraph{ background: black; font-size: 18px; border-radius: 5px; margin : 5px; padding : 5px; grid-column: span 10;  }
+ .grid{
+    display: grid;
+     grid-template-columns: repeat(12, 1fr);
+  grid-gap: 2px;
+ }
+ .col-1{
+    grid-column:span 10;
+    min-height: 50px;
+    background-color: black;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    color: white;
+ }
+ .col-2 button{
+    grid-column: span 2;
+    min-height: 50px;
+    background-color: #1E9DE0;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    color: black;
+    
+ }
+ </style>
+ </head> 
+<body>
+ <div class="outer-box"> 
+
+What do you want rapidx to generate? <br>
+<div class="grid">
+<span class="col-1" id="keyword">
+    ${keyword}
+</span>
+<span class="col-2">
+<button id = "load-more" >Generate Snippet</button>
+</span>
+</div>
+<div class="grid">
+    <div class="paragraph" id="paragraph">
+    </div>
+</div>
+
+ was this accurate? <button >Yes</button><button>No</button>
+ </div>
+ <script>
+    const loadMoreBtn = document.getElementById('load-more');
+    loadMoreBtn.addEventListener('click',show)
+ const url = "https://638444eb4ce192ac6053309c.mockapi.io/generate/1"; 
+
+ function show()
+ {fetch('https://638444eb4ce192ac6053309c.mockapi.io/generate/1').then(function (response) {
+ return response.json(); 
+}).then(function (obj) {
+ console.log(obj);
+ for (let i = 0; i < obj.benefits.length; i++) 
+document.getElementById("paragraph").innerHTML += obj.benefits[i] ;
+ })
+}
+ </script>
+ </body>
+ </html>
